@@ -1,0 +1,7 @@
+{
+  "name": "ionic-esdeveniments",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
