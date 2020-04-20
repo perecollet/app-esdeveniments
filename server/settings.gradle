@@ -1,0 +1,9 @@
+include 'common'
+include 'esdeveniments-configuration'
+include 'adapters:esdeveniments-web'
+findProject(':adapters:esdeveniments-web')?.name = 'esdeveniments-web'
+include 'adapters:esdeveniments-persistence'
+findProject(':adapters:esdeveniments-persistence')?.name = 'esdeveniments-persistence'
+include 'esdeveniments-application'
+include 'esdeveniments-testdata'
+

@@ -1,0 +1,26 @@
+dependencies {
+    implementation project(':common')
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'javax.transaction:javax.transaction-api'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit' // excluding junit 4
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0-M1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.3.3'
+    testImplementation 'com.tngtech.archunit:archunit:0.13.1'
+    testImplementation 'de.adesso:junit-insights:1.1.0'
+    testImplementation 'org.junit.platform:junit-platform-launcher:1.7.0-M1'
+    testImplementation project(':esdeveniments-testdata')
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'de.adesso.junitinsights.enabled', 'true'
+}
+
