@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
@@ -10,7 +11,7 @@
         <module name="server.adapters.esdeveniments-web.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
       <module name="server.esdeveniments-web.main" target="1.8" />
       <module name="server.esdeveniments-web.test" target="1.8" />
       <module name="server.main" target="1.8" />
