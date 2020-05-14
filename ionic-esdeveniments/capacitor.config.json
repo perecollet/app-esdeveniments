@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "ionic-esdeveniments",
+  "appId": "cat.pcolletm.events",
+  "appName": "ionic-events",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
