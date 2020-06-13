@@ -5,4 +5,6 @@ export class Event{
     location:string = "";
     date:string = "";
     startTime:string = "";
+    endTime:string = "";
+    numParticipants: number;
 }

@@ -8,22 +8,22 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'createEvent',
+        path: 'tab1',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../createEvent/createEvent.module').then(m => m.CreateEventPageModule)
+              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'listEvents',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../listEvents/listEvents.module').then(m => m.Tab2PageModule)
           }
         ]
       },
@@ -39,14 +39,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/createEvent',
+        redirectTo: '/tabs/listEvents',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/createEvent',
+    redirectTo: '/tabs/listEvents',
     pathMatch: 'full'
   }
 ];
