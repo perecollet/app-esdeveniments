@@ -1,12 +1,19 @@
-package cat.pcolletm.events;
+package cat.pcolletm.events.persistence;
 
-import lombok.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 @Entity
-@Table(name = "event")
+@Table(name = "EVENTS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,16 +24,13 @@ public class EventJpaEntity {
     private Long id;
 
     @Column
-    private String title;
+    private String activity;
 
     @Column
     private String description;
 
     @Column
     private String location;
-
-    @Column
-    private Date date;
 
     @Column
     private Date startTime;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms'
 import { EventService } from '../../services/EventService';
 import { Event } from '../../model/event';
@@ -17,7 +17,7 @@ export class CreateEventPage{
   errorMessage: string;
   loader: any;
   isDismiss = false;
-
+  activitats=["Futbol","Basquet","Tenis","Padel","Badminton","Rugby","Hoquei","Handbol","Voleibol","Altres"]
   constructor(private eventService: EventService, private router: Router, private menuController: MenuController,
     private loadingCtrl: LoadingController, private modalCtrl: ModalController) {}
 
@@ -32,7 +32,7 @@ export class CreateEventPage{
     this.eventService.new(this.event).subscribe(data => {
       this.dismiss();
       f.resetForm();
-      this.router.navigate(['/tabs/tab2']);
+      this.dismissModal();
     },err => {
       this.errorMessage = "No s'ha pogut crear l'event";
       this.loader.dismiss();
@@ -57,5 +57,4 @@ export class CreateEventPage{
     }
   return await this.loader.dismiss().then(() => console.log('dismissed'));
   }
-
 }

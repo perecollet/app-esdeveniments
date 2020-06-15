@@ -17,17 +17,20 @@
     <div style="overflow-y: scroll;">
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
         <ion-item>
-          <ion-input type="text" placeholder="Títol" class="form-control input-text-custom" id="title" name="title" [(ngModel)]="event.title" #title="ngModel" required></ion-input>
+          <ion-label>Activitat</ion-label>
+          <ion-select id="activity" name="activity" [(ngModel)]="event.activity" #activity="ngModel" required >
+            <ion-select-option *ngFor="let act of activitats" [value]="act">{{act}}</ion-select-option>
+          </ion-select>
         </ion-item>
-        <ion-item *ngIf="f.submitted && !title.valid" class="help-block" no-lines color="danger">
-          <ion-label>El títol és obligatori.</ion-label>
+        <ion-item *ngIf="f.submitted && !activity.valid" class="help-block" no-lines color="danger">
+          <ion-label>L'activitat és obligatoria.</ion-label>
         </ion-item>
         <ion-item>
           <ion-textarea placeholder="Descripció" class="form-control input-textarea-custom" id="description" name="description" [(ngModel)]="event.description" #description="ngModel" required></ion-textarea>
         </ion-item>
         <ion-item *ngIf="f.submitted && !description.valid" class="help-block" no-lines color="danger">
-          <ion-label>La descripció és obligatòria</ion-label>
-        </ion-item>
+          <ion-label>La descripció és obligatòria.</ion-label>
+        </ion-item>    
         <ion-item>
           <ion-input type="text" placeholder="Localització" class="form-control input-text-custom" id="location" name="location" [(ngModel)]="event.location" #location="ngModel" required></ion-input>
         </ion-item>
@@ -35,22 +38,18 @@
           <ion-label>La localització és obligatòria.</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Dia</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" picker-format="DD/MM/YYYY" id="date" name="date" [(ngModel)]="event.date" #date="ngModel" required></ion-datetime>
-        </ion-item>
-        <ion-item *ngIf="f.submitted && !date.valid" class="help-block" no-lines color="danger">
-          <ion-label>La data és obligatòria.</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Hora inici</ion-label>
-          <ion-datetime displayFormat="HH:mm" picker-format="HH:mm" id="startTime" name="startTime" [(ngModel)]="event.startTime" #startTime="ngModel" required></ion-datetime>
+          <ion-label>Inici</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" id="startTime" name="startTime" [(ngModel)]="event.startTime" #startTime="ngModel" required></ion-datetime>
         </ion-item>
         <ion-item *ngIf="f.submitted && !startTime.valid" class="help-block" no-lines color="danger">
-          <ion-label>L'hora d'inici és obligatòria.</ion-label>
+          <ion-label>La data i hora d'inici és obligatòria.</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Hora fi</ion-label>
-          <ion-datetime displayFormat="HH:mm" picker-format="HH:mm" id="endTime" name="endTime" [(ngModel)]="event.endTime" #endTime="ngModel"></ion-datetime>
+          <ion-label>Fi</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" id="endTime" name="endTime" [(ngModel)]="event.endTime" #endTime="ngModel" required></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="f.submitted && !endTime.valid" class="help-block" no-lines color="danger">
+          <ion-label>La data i hora de finalització és obligatòria.</ion-label>
         </ion-item>
         <ion-item>
           <ion-input type="number" placeholder="Número de participants" id="numParticipants" name="numParticipants" [(ngModel)]="event.numParticipants" #numParticipants="ngModel" required></ion-input>
@@ -61,7 +60,7 @@
       </ion-list>
       </div>
       <div pading>
-        <ion-button size="large" type="submit" expand="block">Crear esdeveniment</ion-button>
+        <ion-button size="large" type="submit" vertical="bottom" expand="block">Crear esdeveniment</ion-button>
       </div>
   </form>
 </ion-content> 

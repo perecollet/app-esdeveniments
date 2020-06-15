@@ -1,6 +1,8 @@
 package cat.pcolletm.events.domain;
 
 
+import cat.pcolletm.events.common.CustomJsonDateDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 
 import java.util.Date;
@@ -10,10 +12,10 @@ import java.util.Date;
 public class Event {
 
     @Getter
-    private final EventId esdevenimentId;
+    private final EventId eventId;
 
     @NonNull @Getter @Setter
-    private String title;
+    private String activity;
 
     @NonNull @Getter @Setter
     private String description;
@@ -21,17 +23,32 @@ public class Event {
     @NonNull @Getter @Setter
     private String location;
 
-    @NonNull @Getter @Setter
-    private Date date;
 
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     @NonNull @Getter @Setter
     private Date startTime;
 
-    public static Event eventWithoutId (String title, String description, String location, Date date, Date startTime){
-        return new Event(null,title,description,location,date,startTime);
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
+    @Getter @Setter
+    private Date endTime;
+
+    @NonNull @Getter @Setter
+    private int numParticipants;
+
+    @NonNull @Getter @Setter
+    private int numEnrolledParticipants;
+
+
+    public Event(){
+        this.eventId = null;
     }
-    public static Event eventWithId(EventId id, String title, String description, String location,Date date, Date startTime){
-        return new Event(id,title,description,location,date,startTime);
+
+    public static Event eventWithoutId (String activity, String description, String location, Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
+        return new Event(null,activity,description,location,startTime,endTime,numParticipants, numEnrolledParticipants);
+    }
+
+    public static Event eventWithId(EventId id, String activity, String description, String location,Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
+        return new Event(id,activity,description,location,startTime,endTime,numParticipants,numEnrolledParticipants);
     }
 
 
