@@ -8,6 +8,9 @@ public class User {
     @Getter
     private UserId userId;
 
+    @Getter @Setter
+    private String password;
+
     @NonNull @Getter @Setter
     private String email;
 
@@ -23,6 +26,6 @@ public class User {
 
     @Value
     public static class UserId {
-        private long valeu;
+        private long value;
     }
 }

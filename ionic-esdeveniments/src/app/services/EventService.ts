@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Event } from '../model/event';
 
-let API_URL = "http://192.168.1.44:8080/api/event/";
+//let API_URL = "http://192.168.1.44:8080/api/events/";
+let API_URL = "http://172.16.180.104:8080/api/events/";
 
 @Injectable({
     providedIn: 'root'
