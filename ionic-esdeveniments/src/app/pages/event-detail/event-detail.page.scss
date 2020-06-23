@@ -1,0 +1,20 @@
+$white-color: #fff;
+$height100: 100%;
+
+ion-grid {
+    width:100%;
+    height: $height100;
+    background: #fff;
+}
+
+ion-row {
+    height: $height100;
+}
+
+ion-col {
+    background: $white-color;
+}
+
+ion-textarea{
+    height: 100px;
+}

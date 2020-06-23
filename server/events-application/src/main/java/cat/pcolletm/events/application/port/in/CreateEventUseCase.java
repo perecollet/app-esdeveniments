@@ -4,11 +4,7 @@ import cat.pcolletm.events.common.SelfValidating;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.Value;
-import org.joda.time.DateTime;
 
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public interface CreateEventUseCase {
@@ -34,10 +30,8 @@ public interface CreateEventUseCase {
        @NonNull
        private Date endTime;
 
-       @NonNull
        private int numParticipants;
 
-       @NonNull
        private int numEnrolledParticipants;
 
        public CreateEventCommand (String activity,String description,String location,Date startTime,

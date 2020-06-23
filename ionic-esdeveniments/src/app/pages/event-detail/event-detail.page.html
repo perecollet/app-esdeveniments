@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{event.activity}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click) ="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-item *ngIf="errorMessage" class="help-block" no-lines color="danger">
+      <ion-label><strong>Error: </strong>{{errorMessage}}</ion-label>
+    </ion-item>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div padding>
+          <img src="../../../assets/images/{{event.activity}}.jpg" />
+          <ion-item>
+            <ion-textarea class="form-control input-text-custom"  id="description" value="{{event.description}}" readonly></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Localització: </ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{event.location}}" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hora inici:</ion-label>
+            <ion-datetime displayFormat="DD/MM HH:mm"  id="startTime" value="{{event.startTime}}"  readonly></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hora fi:</ion-label>
+            <ion-datetime displayFormat="DD/MM HH:mm"  id="endTime" value="{{event.endTime}}"  readonly></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Participants: </ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="participants"  value="{{event.numEnrolledParticipants}}/{{event.numParticipants}}" readonly></ion-input>
+          </ion-item>
+          <ion-button id="submitButton" color="success" expand="block" size="large" (click) = "joinEvent(event.eventId['value'])">Unir-se</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher *ngIf="!joined" slot="fixed" (ionRefresh)="findNotJoinedEvents($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-refresher *ngIf="joined" slot="fixed" (ionRefresh)="findJoinedEvents($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-item *ngFor="let event of eventsList">
+    <ion-card (click) = "loadEventModal(event)">
+      <img src="../../../assets/images/{{event.activity}}.jpg" />
+      <ion-card-header>
+        <ion-card-subtitle>Activitat</ion-card-subtitle>
+        <ion-card-title>{{event.activity}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{event.description}}<br><br>
+        <b>{{event.location}}</b><br>
+        <b>{{event.startTime | date:"dd/MM HH:mm"}} - {{event.endTime | date:"dd/MM HH:mm"}}</b>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+
+  <ion-fab *ngIf="!joined"  horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary" (click) ="createEventModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

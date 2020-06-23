@@ -2,10 +2,7 @@ package cat.pcolletm.events.persistence;
 
 import cat.pcolletm.events.domain.Event;
 import cat.pcolletm.events.domain.Event.EventId;
-import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Component
 public class EventMapper {

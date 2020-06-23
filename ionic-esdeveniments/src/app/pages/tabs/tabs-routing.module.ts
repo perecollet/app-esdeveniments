@@ -1,19 +1,38 @@
+import { NavParams } from '@ionic/angular';
+import { ListEventsPage } from './../list-events/list-events.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
-      {
-        path: 'tab1',
+      /*{
+        path: 'listJoinedEvents',
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+            loadChildren: '../list-events/list-events.module#ListEventsPageModule'
+          }
+        ]
+      },*/
+      {
+        path: '',
+        children: [
+          {
+            path: '',
+            loadChildren: '../list-events/list-events.module#ListEventsPageModule'
+          }
+        ]
+      },
+      {
+        path: 'listJoinedEvents',
+        children: [
+          {
+            path:'',
+            loadChildren: '../list-events/list-events.module#ListEventsPageModule'
           }
         ]
       },
@@ -21,9 +40,8 @@ const routes: Routes = [
         path: 'listEvents',
         children: [
           {
-            path: '',
-            loadChildren: () =>
-              import('../listEvents/listEvents.module').then(m => m.Tab2PageModule)
+            path:'',
+            loadChildren: '../list-events/list-events.module#ListEventsPageModule'
           }
         ]
       },
@@ -37,18 +55,8 @@ const routes: Routes = [
           }
         ]
       },
-      {
-        path: '',
-        redirectTo: '/tabs/listEvents',
-        pathMatch: 'full'
-      }
     ]
   },
-  {
-    path: '',
-    redirectTo: '/tabs/listEvents',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({

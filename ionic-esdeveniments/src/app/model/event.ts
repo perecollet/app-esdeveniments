@@ -1,10 +1,10 @@
 export class Event{
-    id:string;
+    eventId:string;
     activity:string = "";
     description:string = "";
     location:string = "";
-    date:string = "";
     startTime:string = "";
     endTime:string = "";
     numParticipants: number;
+    numEnrolledParticipants: number;
 }

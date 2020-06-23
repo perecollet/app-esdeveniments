@@ -9,6 +9,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
     implementation 'javax.transaction:javax.transaction-api'
     implementation 'joda-time:joda-time:2.10.6'
+    implementation 'org.springframework.security:spring-security-core:5.3.3.RELEASE'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'junit' // excluding junit 4

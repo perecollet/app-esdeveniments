@@ -29,13 +29,13 @@ public class Event {
     private Date startTime;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    @Getter @Setter
+    @NonNull @Getter @Setter
     private Date endTime;
 
-    @NonNull @Getter @Setter
+    @Getter @Setter
     private int numParticipants;
 
-    @NonNull @Getter @Setter
+    @Getter @Setter
     private int numEnrolledParticipants;
 
 
@@ -63,5 +63,14 @@ public class Event {
     @Value
     public static class EventId{
         private long value;
+    }
+
+    public boolean validateEventTime (Event event){
+        if (startTime.equals(event.getStartTime())) return false;
+        else if (startTime.before(event.getEndTime()) &&
+                startTime.after(event.getStartTime())) return false;
+        else if (endTime.before(event.getEndTime()) &&
+                endTime.after(event.getStartTime())) return false;
+        else return true;
     }
 }

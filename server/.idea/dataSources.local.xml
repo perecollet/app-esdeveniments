@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="app_esdeveniments" uuid="bf88ad61-96d4-4003-8657-987c59d55031">
+    <data-source name="app_esdeveniments" uuid="5cc81a86-bb56-4ae2-8895-0f0786d0deee">
       <database-info product="H2" version="1.4.200 (2019-10-14)" jdbc-version="4.1" driver-name="H2 JDBC Driver" driver-version="1.4.200 (2019-10-14)" dbms="H2" exact-version="1.4.200" exact-driver-version="1.4">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
-      <user-name>sa</user-name>
+      <user-name>pere</user-name>
       <schema-mapping>
         <introspection-scope>
           <node kind="database" qname="@">
