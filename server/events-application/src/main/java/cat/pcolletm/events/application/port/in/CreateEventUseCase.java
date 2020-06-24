@@ -1,6 +1,7 @@
 package cat.pcolletm.events.application.port.in;
 
 import cat.pcolletm.events.common.SelfValidating;
+import cat.pcolletm.events.domain.User.UserId;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.Value;
@@ -14,6 +15,9 @@ public interface CreateEventUseCase {
    @Value
    @EqualsAndHashCode(callSuper = false)
    class CreateEventCommand extends SelfValidating<CreateEventCommand> {
+
+       @NonNull
+       private UserId creatorId;
 
        @NonNull
        private String activity;
@@ -34,8 +38,9 @@ public interface CreateEventUseCase {
 
        private int numEnrolledParticipants;
 
-       public CreateEventCommand (String activity,String description,String location,Date startTime,
+       public CreateEventCommand (UserId creatorId, String activity, String description, String location, Date startTime,
                                   Date endTime, int numParticipants, int numEnrolledParticipants){
+           this.creatorId = creatorId;
            this.activity = activity;
            this.description = description;
            this.location = location;

@@ -40,6 +40,17 @@ export class EventDetailPage implements OnInit {
     });
   }
 
+  leaveEvent(eventId){
+    this.presentLoading()
+    this.eventService.leaveEvent(eventId).subscribe(data => {
+      this.dismiss();
+      this.dismissModal();
+    },err => {
+      this.errorMessage = "No s'ha pogut abandonar l'esdeveniment";
+      this.dismiss();
+    });
+  }
+
   async presentLoading() {
     this.loader = await this.loadingCtrl.create({
       message: 'Please wait...'

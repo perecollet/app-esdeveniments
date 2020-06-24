@@ -19,6 +19,9 @@ public class EventJpaEntity {
     private Long id;
 
     @Column
+    private Long creatorId;
+
+    @Column
     private String activity;
 
     @Column

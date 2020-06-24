@@ -1,7 +1,8 @@
 package cat.pcolletm.events.persistence;
 
 import cat.pcolletm.events.application.port.in.LoadEventsPort;
-import cat.pcolletm.events.application.port.out.CreateEventPort;
+import cat.pcolletm.events.application.port.out.UploadEventPort;
+import cat.pcolletm.events.application.port.out.DeleteEventPort;
 import cat.pcolletm.events.common.PersistenceAdapter;
 import cat.pcolletm.events.domain.Event;
 import lombok.RequiredArgsConstructor;
@@ -12,15 +13,18 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @PersistenceAdapter
-public class EventPersistenceAdapter implements CreateEventPort, LoadEventsPort {
+public class EventPersistenceAdapter implements UploadEventPort, LoadEventsPort, DeleteEventPort {
 
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
 
     @Override
-    public void createEvent(Event event) {
-        eventRepository.save(eventMapper.mapToJpaEnity(event));
+    public Long createEvent(Event event) {
+        return eventRepository.save(eventMapper.mapToJpaEnity(event)).getId();
     }
+
+    @Override
+    public void updateEvent(Event event){ eventRepository.save(eventMapper.mapToJpaEnity(event));}
 
     @Override
     public Event loadEventById(Long id) {
@@ -76,5 +80,10 @@ public class EventPersistenceAdapter implements CreateEventPort, LoadEventsPort 
         }
 
         return events;
+    }
+
+    @Override
+    public void deleteEvent(Long eventId) {
+        eventRepository.deleteById(eventId);
     }
 }

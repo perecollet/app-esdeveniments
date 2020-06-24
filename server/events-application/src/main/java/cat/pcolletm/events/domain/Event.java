@@ -3,6 +3,7 @@ package cat.pcolletm.events.domain;
 
 import cat.pcolletm.events.common.CustomJsonDateDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import cat.pcolletm.events.domain.User.UserId;
 import lombok.*;
 
 import java.util.Date;
@@ -14,6 +15,9 @@ public class Event {
     @Getter
     private final EventId eventId;
 
+    @NonNull @Getter
+    private UserId creatorId;
+
     @NonNull @Getter @Setter
     private String activity;
 
@@ -22,7 +26,6 @@ public class Event {
 
     @NonNull @Getter @Setter
     private String location;
-
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     @NonNull @Getter @Setter
@@ -43,12 +46,12 @@ public class Event {
         this.eventId = null;
     }
 
-    public static Event eventWithoutId (String activity, String description, String location, Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
-        return new Event(null,activity,description,location,startTime,endTime,numParticipants, numEnrolledParticipants);
+    public static Event eventWithoutId ( UserId creatorId,String activity, String description, String location, Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
+        return new Event(null,creatorId,activity,description,location,startTime,endTime,numParticipants, numEnrolledParticipants);
     }
 
-    public static Event eventWithId(EventId id, String activity, String description, String location,Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
-        return new Event(id,activity,description,location,startTime,endTime,numParticipants,numEnrolledParticipants);
+    public static Event eventWithId(EventId id, UserId creatorId,String activity, String description, String location,Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
+        return new Event(id,creatorId,activity,description,location,startTime,endTime,numParticipants,numEnrolledParticipants);
     }
 
 
@@ -59,6 +62,10 @@ public class Event {
     public void eliminarParticipant (Usuari usuari){
         participants.
     }*/
+
+    public void setCreatorId(Long creatorId){
+        this.creatorId = new UserId(creatorId);
+    }
 
     @Value
     public static class EventId{

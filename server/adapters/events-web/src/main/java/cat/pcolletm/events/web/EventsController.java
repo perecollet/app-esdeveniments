@@ -4,6 +4,8 @@ import cat.pcolletm.events.application.port.in.CreateEventUseCase;
 import cat.pcolletm.events.application.port.in.CreateEventUseCase.CreateEventCommand;
 import cat.pcolletm.events.application.port.in.JoinEventUseCase;
 import cat.pcolletm.events.application.port.in.JoinEventUseCase.JoinEventCommand;
+import cat.pcolletm.events.application.port.in.LeaveEventUseCase;
+import cat.pcolletm.events.application.port.in.LeaveEventUseCase.LeaveEventCommand;
 import cat.pcolletm.events.application.port.in.LoadEventsPort;
 import cat.pcolletm.events.common.WebAdapter;
 import cat.pcolletm.events.domain.Event;
@@ -19,19 +21,21 @@ public class EventsController {
 
     private final CreateEventUseCase createEventUseCase;
     private final JoinEventUseCase joinEventUseCase;
+    private final LeaveEventUseCase leaveEventUseCase;
     private final LoadEventsPort loadEventsPort;
 
     @PostMapping("api/events/new")
     ResponseEntity<?> createEvent(@RequestBody Event event){
 
         CreateEventUseCase.CreateEventCommand command = new CreateEventCommand(
+                event.getCreatorId(),
                 event.getActivity(),
                 event.getDescription(),
                 event.getLocation(),
                 event.getStartTime(),
                 event.getEndTime(),
                 event.getNumParticipants(),
-                1);
+                0);
 
         if(!createEventUseCase.createEvent(command)) return new ResponseEntity<>(HttpStatus.CONFLICT);
         
@@ -57,6 +61,13 @@ public class EventsController {
     ResponseEntity<?> join(@PathVariable("eventId") Long eventId, @PathVariable("userId") Long userId){
         JoinEventUseCase.JoinEventCommand command = new JoinEventCommand(eventId, userId);
         if(!joinEventUseCase.joinEvent(command)) return new ResponseEntity<>(HttpStatus.CONFLICT);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("api/events/leave/{eventId}/{userId}")
+    ResponseEntity<?> leave(@PathVariable("eventId") Long eventId, @PathVariable("userId") Long userId){
+        LeaveEventUseCase.LeaveEventCommand command = new LeaveEventCommand(eventId, userId);
+        if(!leaveEventUseCase.leaveEvent(command)) return new ResponseEntity<>(HttpStatus.CONFLICT);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

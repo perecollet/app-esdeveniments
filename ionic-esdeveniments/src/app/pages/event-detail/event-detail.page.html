@@ -34,7 +34,8 @@
             <ion-label>Participants: </ion-label>
             <ion-input type="text" class="form-control input-text-custom" id="participants"  value="{{event.numEnrolledParticipants}}/{{event.numParticipants}}" readonly></ion-input>
           </ion-item>
-          <ion-button id="submitButton" color="success" expand="block" size="large" (click) = "joinEvent(event.eventId['value'])">Unir-se</ion-button>
+          <ion-button *ngIf="!joined"  id="submitButton" color="success" expand="block" size="large" (click) = "joinEvent(event.eventId['value'])">Unir-se</ion-button>
+          <ion-button *ngIf="joined"  id="submitButton" color="danger" expand="block" size="large" (click) = "leaveEvent(event.eventId['value'])">Abandona</ion-button>
         </div>
       </ion-col>
     </ion-row>

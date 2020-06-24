@@ -2,8 +2,8 @@ package cat.pcolletm.events.application.service;
 
 import cat.pcolletm.events.application.port.in.JoinEventUseCase;
 import cat.pcolletm.events.application.port.in.LoadEventsPort;
-import cat.pcolletm.events.application.port.out.CreateEventPort;
 import cat.pcolletm.events.application.port.out.JoinEventPort;
+import cat.pcolletm.events.application.port.out.UploadEventPort;
 import cat.pcolletm.events.common.UseCase;
 import cat.pcolletm.events.domain.Event;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.List;
 public class JoinEventService implements JoinEventUseCase {
 
     private final LoadEventsPort loadEventsPort;
-    private final CreateEventPort createEventPort;
+    private final UploadEventPort uploadEventPort;
     private final JoinEventPort joinEventPort;
 
     @Override
@@ -34,7 +34,7 @@ public class JoinEventService implements JoinEventUseCase {
         }
 
         event.setNumEnrolledParticipants(event.getNumEnrolledParticipants()+1);
-        createEventPort.createEvent(event);
+        uploadEventPort.updateEvent(event);
         joinEventPort.joinEvent(command.getEventId(),command.getUserId());
 
         return true;

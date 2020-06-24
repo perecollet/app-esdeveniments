@@ -33,6 +33,7 @@ export class CreateEventPage implements OnInit{
 
   
   save(f: NgForm){
+    this.event.creatorId = localStorage.getItem("userId");
     this.presentLoading();
     this.eventService.new(this.event).subscribe(data => {
       this.dismiss();

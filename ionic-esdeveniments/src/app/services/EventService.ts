@@ -46,4 +46,10 @@ export class EventService{
         return this.http.post(API_URL + "join/" + eventId + "/" + userId,
         {headers: this.getHeaders(),withCredentials:true});
     }
+
+    leaveEvent(eventId: number): Observable<any>{
+        let userId = localStorage.getItem("userId");
+        return this.http.post(API_URL + "leave/" + eventId + "/" + userId,
+        {headers: this.getHeaders(),withCredentials:true});
+    }
 }

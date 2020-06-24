@@ -1,8 +1,10 @@
 package cat.pcolletm.events.application.service;
 
 import cat.pcolletm.events.application.port.in.CreateEventUseCase;
+import cat.pcolletm.events.application.port.in.JoinEventUseCase;
 import cat.pcolletm.events.application.port.in.LoadEventsPort;
-import cat.pcolletm.events.application.port.out.CreateEventPort;
+import cat.pcolletm.events.application.port.out.DeleteEventPort;
+import cat.pcolletm.events.application.port.out.UploadEventPort;
 import cat.pcolletm.events.common.UseCase;
 import cat.pcolletm.events.domain.Event;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +17,17 @@ import java.util.Date;
 @Transactional
 public class CreateEventService implements CreateEventUseCase {
 
-    private final CreateEventPort createEventPort;
+    private final UploadEventPort uploadEventPort;
+    private final DeleteEventPort deleteEventPort;
     private final LoadEventsPort loadEventsPort;
+    private final JoinEventUseCase joinEventUseCase;
 
     @Override
     public boolean createEvent(CreateEventCommand command) {
 
-        Event event = Event.eventWithoutId(command.getActivity(),
+        Event event = Event.eventWithoutId(
+                command.getCreatorId(),
+                command.getActivity(),
                 command.getDescription(),
                 command.getLocation(),
                 command.getStartTime(),
@@ -37,7 +43,14 @@ public class CreateEventService implements CreateEventUseCase {
                return false;
         }
 
-        createEventPort.createEvent(event);
+        Long eventId = uploadEventPort.createEvent(event);
+
+        JoinEventUseCase.JoinEventCommand joinCommand = new JoinEventUseCase.JoinEventCommand(eventId, event.getCreatorId().getValue());
+
+        if (!joinEventUseCase.joinEvent(joinCommand)){
+            deleteEventPort.deleteEvent(eventId);
+            return false;
+        }
 
         return true;
     }
