@@ -3,6 +3,7 @@ package cat.pcolletm.events.persistence;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -28,6 +29,21 @@ public class UserJpaEntity {
 
     @Column
     private String surname;
+
+    @Column
+    private String dni;
+
+    @Column
+    private String phone;
+
+    @Column
+    private String address;
+
+    @Column
+    private String city;
+
+    @Column
+    private String zipcode;
 
     @Column
     private String description;

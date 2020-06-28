@@ -7,6 +7,7 @@ import cat.pcolletm.events.domain.User.UserId;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -41,17 +42,20 @@ public class Event {
     @Getter @Setter
     private int numEnrolledParticipants;
 
+    @Getter @Setter
+    private List<User> participants;
+
 
     public Event(){
         this.eventId = null;
     }
 
-    public static Event eventWithoutId ( UserId creatorId,String activity, String description, String location, Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
-        return new Event(null,creatorId,activity,description,location,startTime,endTime,numParticipants, numEnrolledParticipants);
+    public static Event eventWithoutId ( UserId creatorId,String activity, String description, String location, Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants, List participants){
+        return new Event(null,creatorId,activity,description,location,startTime,endTime,numParticipants, numEnrolledParticipants, participants);
     }
 
-    public static Event eventWithId(EventId id, UserId creatorId,String activity, String description, String location,Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants){
-        return new Event(id,creatorId,activity,description,location,startTime,endTime,numParticipants,numEnrolledParticipants);
+    public static Event eventWithId(EventId id, UserId creatorId,String activity, String description, String location,Date startTime, Date endTime, int numParticipants, int numEnrolledParticipants, List participants){
+        return new Event(id,creatorId,activity,description,location,startTime,endTime,numParticipants,numEnrolledParticipants, participants);
     }
 
 

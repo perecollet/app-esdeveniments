@@ -12,7 +12,7 @@ interface UserRepository extends JpaRepository<UserJpaEntity,Long> {
     Optional<UserJpaEntity> findByEmail(String email);
 
     @Query("select u from UserJpaEntity u " +
-            "where u.id = (select p.userId from ParticipantsJpaEntity p" +
+            "where u.id in (select p.userId from ParticipantsJpaEntity p" +
             "   where p.eventId = :eventId)")
     List<UserJpaEntity> findParticipants(@Param("eventId")Long eventId);
 }

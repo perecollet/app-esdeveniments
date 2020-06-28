@@ -2,13 +2,17 @@ package cat.pcolletm.events.persistence;
 
 import cat.pcolletm.events.domain.Event;
 import cat.pcolletm.events.domain.Event.EventId;
+import cat.pcolletm.events.domain.User;
 import cat.pcolletm.events.domain.User.UserId;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class EventMapper {
 
-    public Event mapToDomainEntity(EventJpaEntity eventJpaEntity){
+    public Event mapToDomainEntity(EventJpaEntity eventJpaEntity, List<User> participants) {
+
         return Event.eventWithId(
                 new EventId(eventJpaEntity.getId()),
                 new UserId(eventJpaEntity.getCreatorId()),
@@ -18,11 +22,12 @@ public class EventMapper {
                 eventJpaEntity.getStartTime(),
                 eventJpaEntity.getEndTime(),
                 eventJpaEntity.getNumParticipants(),
-                eventJpaEntity.getNumEnrolledParticipants()
+                eventJpaEntity.getNumEnrolledParticipants(),
+                participants
         );
     }
 
-    public EventJpaEntity mapToJpaEnity (Event event){
+    public EventJpaEntity mapToJpaEnity(Event event) {
         return new EventJpaEntity(
                 event.getEventId() == null ? null : event.getEventId().getValue(),
                 event.getCreatorId().getValue(),

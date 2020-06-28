@@ -18,7 +18,8 @@ interface EventRepository extends JpaRepository<EventJpaEntity,Long> {
     List<EventJpaEntity> findByEventsJoinedByUser(@Param("userId") Long userId);
 
     @Query("select e from EventJpaEntity e " +
-            "where e.startTime >= CURRENT_TIMESTAMP " +
+            "where e.numEnrolledParticipants < e.numParticipants " +
+            "and e.startTime >= CURRENT_TIMESTAMP " +
             "and e.id not in (select p.eventId from ParticipantsJpaEntity p" +
             "   where p.userId = :userId)")
     List<EventJpaEntity> findByEventsNotJoinedByUser(@Param("userId") Long userId);

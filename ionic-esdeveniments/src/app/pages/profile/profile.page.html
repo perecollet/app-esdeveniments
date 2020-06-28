@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>El teu perfil</ion-title>
+    <ion-button id="logout" slot="end" color="light" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-item *ngIf="errorMessage" class="help-block" no-lines color="danger">
+      <ion-label><strong>Error: </strong>{{errorMessage}}</ion-label>
+    </ion-item>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div *ngIf="isDataAvailable"  padding>
+          <ion-item>
+            <ion-label>Nom: </ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.name}} {{user.surname}}" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>D.N.I: </ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.dni}}" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked"></ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.address}}" readonly></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.city}}" readonly></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.zipcode}}" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Correu: </ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.email}}" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Telèfon: </ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.phone}}" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Descripció:<br> </ion-label>
+            <ion-textarea class="form-control input-text-custom"  id="description" value="{{user.description}}" readonly></ion-textarea>
+          </ion-item>
+         </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

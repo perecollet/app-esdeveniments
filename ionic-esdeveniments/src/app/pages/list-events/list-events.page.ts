@@ -87,7 +87,7 @@ export class ListEventsPage implements OnInit{
       }
     });
     modal.onDidDismiss().then(() =>{
-      this.findNotJoinedEvents(null);
+      this.isJoined();
     });
     return await modal.present();
   }

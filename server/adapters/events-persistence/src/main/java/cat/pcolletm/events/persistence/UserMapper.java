@@ -13,6 +13,11 @@ public class UserMapper {
                 userJpaEntity.getPassword(),
                 userJpaEntity.getName(),
                 userJpaEntity.getSurname(),
+                userJpaEntity.getDni(),
+                userJpaEntity.getPhone(),
+                userJpaEntity.getAddress(),
+                userJpaEntity.getCity(),
+                userJpaEntity.getZipcode(),
                 userJpaEntity.getDescription() == null ? null : userJpaEntity.getDescription()
         );
     }
@@ -24,6 +29,11 @@ public class UserMapper {
                 user.getPassword(),
                 user.getName(),
                 user.getSurname(),
+                user.getDni(),
+                user.getPhone(),
+                user.getAddress(),
+                user.getCity(),
+                user.getZipcode(),
                 user.getDescription()
         );
     }

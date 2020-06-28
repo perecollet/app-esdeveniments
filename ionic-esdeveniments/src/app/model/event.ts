@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export class Event{
     eventId:string;
     creatorId:string;
@@ -8,4 +10,5 @@ export class Event{
     endTime:string = "";
     numParticipants: number;
     numEnrolledParticipants: number;
+    participants:Array<User>;
 }

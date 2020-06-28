@@ -33,7 +33,11 @@ public class JoinEventService implements JoinEventUseCase {
             }
         }
 
-        event.setNumEnrolledParticipants(event.getNumEnrolledParticipants()+1);
+        if (event.getNumEnrolledParticipants() < event.getNumParticipants())
+            event.setNumEnrolledParticipants(event.getNumEnrolledParticipants()+1);
+        else
+            return false;
+
         uploadEventPort.updateEvent(event);
         joinEventPort.joinEvent(command.getEventId(),command.getUserId());
 

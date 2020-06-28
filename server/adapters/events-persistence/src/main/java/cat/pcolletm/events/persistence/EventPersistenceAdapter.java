@@ -5,6 +5,7 @@ import cat.pcolletm.events.application.port.out.UploadEventPort;
 import cat.pcolletm.events.application.port.out.DeleteEventPort;
 import cat.pcolletm.events.common.PersistenceAdapter;
 import cat.pcolletm.events.domain.Event;
+import cat.pcolletm.events.domain.User;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityNotFoundException;
@@ -16,7 +17,9 @@ import java.util.List;
 public class EventPersistenceAdapter implements UploadEventPort, LoadEventsPort, DeleteEventPort {
 
     private final EventRepository eventRepository;
+    private final UserRepository userRepository;
     private final EventMapper eventMapper;
+    private final UserMapper userMapper;
 
     @Override
     public Long createEvent(Event event) {
@@ -28,11 +31,16 @@ public class EventPersistenceAdapter implements UploadEventPort, LoadEventsPort,
 
     @Override
     public Event loadEventById(Long id) {
+        List<User> participants = new ArrayList<>();
 
         EventJpaEntity event = eventRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
-        return eventMapper.mapToDomainEntity(event);
+        for(UserJpaEntity user: userRepository.findParticipants(id)){
+            participants.add(userMapper.mapToDomainEntity(user));
+        }
+
+        return eventMapper.mapToDomainEntity(event, participants);
     }
 
     @Override
@@ -40,7 +48,11 @@ public class EventPersistenceAdapter implements UploadEventPort, LoadEventsPort,
         List<Event> events = new ArrayList<>();
 
         for (EventJpaEntity event: eventRepository.findByLocation(location)){
-            events.add(eventMapper.mapToDomainEntity(event));
+            List<User> participants = new ArrayList<>();
+            for(UserJpaEntity user: userRepository.findParticipants(event.getId())){
+                participants.add(userMapper.mapToDomainEntity(user));
+            }
+            events.add(eventMapper.mapToDomainEntity(event,participants));
         }
 
         return events;
@@ -52,7 +64,11 @@ public class EventPersistenceAdapter implements UploadEventPort, LoadEventsPort,
         List<Event> events = new ArrayList<>();
 
         for (EventJpaEntity event: eventRepository.findAll()){
-            events.add(eventMapper.mapToDomainEntity(event));
+            List<User> participants = new ArrayList<>();
+            for(UserJpaEntity user: userRepository.findParticipants(event.getId())){
+                participants.add(userMapper.mapToDomainEntity(user));
+            }
+            events.add(eventMapper.mapToDomainEntity(event,participants));
         }
 
         return events;
@@ -64,7 +80,11 @@ public class EventPersistenceAdapter implements UploadEventPort, LoadEventsPort,
         List<Event> events = new ArrayList<>();
 
         for (EventJpaEntity event: eventRepository.findByEventsJoinedByUser(userId)){
-            events.add(eventMapper.mapToDomainEntity(event));
+            List<User> participants = new ArrayList<>();
+            for(UserJpaEntity user: userRepository.findParticipants(event.getId())){
+                participants.add(userMapper.mapToDomainEntity(user));
+            }
+            events.add(eventMapper.mapToDomainEntity(event,participants));
         }
 
         return events;
@@ -76,7 +96,11 @@ public class EventPersistenceAdapter implements UploadEventPort, LoadEventsPort,
         List<Event> events = new ArrayList<>();
 
         for (EventJpaEntity event: eventRepository.findByEventsNotJoinedByUser(userId)){
-            events.add(eventMapper.mapToDomainEntity(event));
+            List<User> participants = new ArrayList<>();
+            for(UserJpaEntity user: userRepository.findParticipants(event.getId())){
+                participants.add(userMapper.mapToDomainEntity(user));
+            }
+            events.add(eventMapper.mapToDomainEntity(event,participants));
         }
 
         return events;

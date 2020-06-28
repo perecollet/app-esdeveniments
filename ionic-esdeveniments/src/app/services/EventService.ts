@@ -5,7 +5,7 @@ import { Event } from '../model/event';
 
 //let API_URL = "http://192.168.0.75:8080/api/events/";
 let API_URL = "http://192.168.1.44:8080/api/events/";
-//let API_URL = "http://172.16.180.123:8080/api/events/";
+//let API_URL = "http://172.16.180.45:8080/api/events/";
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +24,7 @@ export class EventService{
 
         return headers;
     }
+    
     new(event: Event): Observable<any>{
         return this.http.post(API_URL + 'new', JSON.stringify(event),
         {headers:this.getHeaders(),withCredentials:true});

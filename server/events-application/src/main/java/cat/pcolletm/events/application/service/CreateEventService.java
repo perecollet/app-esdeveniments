@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @RequiredArgsConstructor
 @UseCase
@@ -33,7 +34,8 @@ public class CreateEventService implements CreateEventUseCase {
                 command.getStartTime(),
                 command.getEndTime(),
                 command.getNumParticipants(),
-                command.getNumEnrolledParticipants());
+                command.getNumEnrolledParticipants(),
+                null);
 
         if (event.getStartTime().before(new Date()) ||
                 event.getEndTime().before(event.getStartTime())) return false;

@@ -31,6 +31,11 @@ public class CreateUserService implements CreateUserUseCase {
                 passwordEncoder.encode(command.getPassword()),
                 command.getName(),
                 command.getSurname(),
+                command.getDni(),
+                command.getPhone(),
+                command.getAddress(),
+                command.getCity(),
+                command.getZipcode(),
                 command.getDescription()
         );
 

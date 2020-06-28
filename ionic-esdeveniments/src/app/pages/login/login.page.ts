@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   errorMessage:string;
   isDismiss = false;
 
-  constructor(public authService:AuthService, private menu: MenuController,
+  constructor(public authService:AuthService,private menu: MenuController,
     public loadingCtrl: LoadingController, public router: Router, private navCtrl: NavController) {}
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
     this.presentLoading();
     this.authService.login(this.user).subscribe(data => {
       this.dismiss();
-      this.navCtrl.navigateRoot(['/home']);
+      this.router.navigate(['/home']);
     },err =>{
       this.errorMessage ="Correu electrònic o contrasenya incorrecte.";
       this.dismiss();

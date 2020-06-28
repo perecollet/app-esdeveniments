@@ -11,10 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -33,6 +30,11 @@ public class UsersController {
                 user.getPassword(),
                 user.getName(),
                 user.getSurname(),
+                user.getDni(),
+                user.getPhone(),
+                user.getAddress(),
+                user.getCity(),
+                user.getZipcode(),
                 user.getDescription()
         );
 
@@ -56,5 +58,10 @@ public class UsersController {
     @GetMapping("/api/users/all")
     public ResponseEntity<?> getAllUsers(){
         return ResponseEntity.ok(loadUsersPort.loadAll());
+    }
+
+    @GetMapping("/api/users/{userId}")
+    public ResponseEntity<?> getAllUsers(@PathVariable("userId") Long userId){
+        return ResponseEntity.ok(loadUsersPort.loadUserById(userId));
     }
 }
