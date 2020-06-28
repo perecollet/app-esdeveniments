@@ -34,15 +34,16 @@
             <ion-label>Participants apuntats: </ion-label>
             <ion-input type="text" class="form-control input-text-custom" id="participants"  value="{{event.numEnrolledParticipants}}/{{event.numParticipants}}" readonly></ion-input>
           </ion-item>
-          <ion-item *ngIf="joined" expandable>
-            <ion-list >
+          <ion-item *ngIf="joined" (click)="showParticipants()">
+            <ion-label>Participants</ion-label>
+            <ion-list *ngIf="show" >
               <ion-item *ngFor="let user of event.participants">
-                <ion-input type="text" class="form-control input-text-custom"  value="{{user.name}} {{user.surname}}" readonly></ion-input>
+                <ion-input type="text" class="form-control input-text-custom" (click)="showUserDetails(user)" value="{{user.name}} {{user.surname}}" readonly></ion-input>
               </ion-item>
             </ion-list>
           </ion-item>
           <ion-button *ngIf="!joined"  id="submitButton" color="success" expand="block" size="large" (click) = "joinEvent(event.eventId['value'])">Unir-se</ion-button>
-          <ion-button *ngIf="joined"  id="submitButton" color="danger" expand="block" size="large" (click) = "leaveEvent(event.eventId['value'])">Abandona</ion-button>
+          <ion-button *ngIf="joined && !creator"  id="submitButton" color="danger" expand="block" size="large" (click) = "leaveEvent(event.eventId['value'])">Abandona</ion-button>
         </div>
       </ion-col>
     </ion-row>

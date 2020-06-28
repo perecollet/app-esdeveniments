@@ -51,7 +51,6 @@ public class User {
     }
 
 
-
     @Value
     public static class UserId {
         private long value;

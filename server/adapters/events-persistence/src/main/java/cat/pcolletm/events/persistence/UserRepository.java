@@ -11,6 +11,8 @@ interface UserRepository extends JpaRepository<UserJpaEntity,Long> {
 
     Optional<UserJpaEntity> findByEmail(String email);
 
+    Optional<UserJpaEntity> findByDni(String email);
+
     @Query("select u from UserJpaEntity u " +
             "where u.id in (select p.userId from ParticipantsJpaEntity p" +
             "   where p.eventId = :eventId)")

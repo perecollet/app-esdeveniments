@@ -29,7 +29,7 @@ public interface CreateUserUseCase {
         @NonNull
         private String dni;
 
-        @NonNull
+        @NonNull @Pattern(regexp = "(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}")
         private String phone;
 
         @NonNull

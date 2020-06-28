@@ -19,12 +19,11 @@ export class ListEventsPage implements OnInit{
   loader: any;
   isDismiss = false;
   currentModal = null;
-
+  activitats=["Futbol","Basquet","Tenis","Padel","Badminton","Rugby","Hoquei","Handbol","Voleibol","Altres"];
 
   constructor(private eventService: EventService, private router: Router, private menuController: MenuController,
     private loadingCtrl: LoadingController, private modalCtrl: ModalController) {
-    }
-
+  }
 
   ngOnInit(){
     this.menuController.enable(true);
@@ -32,7 +31,7 @@ export class ListEventsPage implements OnInit{
   }
 
   ionViewWillEnter(){
-    this.isJoined();
+   this.isJoined();
   }
 
   isJoined(){
@@ -43,7 +42,8 @@ export class ListEventsPage implements OnInit{
     else{
       this.joined = true;
       this.findJoinedEvents(null);
-    } 
+    }
+    this.dismiss();
   }
 
   findJoinedEvents(event){
@@ -63,7 +63,7 @@ export class ListEventsPage implements OnInit{
   }
 
   findNotJoinedEvents(event){
-    this.presentLoading()
+    this.presentLoading();
     this.eventService.findNotJoinedEvents().subscribe(data => {
       this.eventsList = data;
       this.eventsList.reverse();
@@ -72,7 +72,6 @@ export class ListEventsPage implements OnInit{
       this.errorMessage = "No s'ha pogut llistar els esdeveniments";
       this.dismiss();
     });
-
     if (event){
       event.target.complete();
     }
@@ -119,7 +118,7 @@ export class ListEventsPage implements OnInit{
     if(!this.loader){
       return;
     }
-  return await this.loader.dismiss().then(() => console.log('dismissed'));
+    return await this.loader.dismiss().then(() => console.log('dismissed'));
   }
 
 

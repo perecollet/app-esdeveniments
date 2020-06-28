@@ -64,7 +64,7 @@ public class EventsController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("api/events/leave/{eventId}/{userId}")
+    @DeleteMapping("api/events/leave/{eventId}/{userId}")
     ResponseEntity<?> leave(@PathVariable("eventId") Long eventId, @PathVariable("userId") Long userId){
         LeaveEventUseCase.LeaveEventCommand command = new LeaveEventCommand(eventId, userId);
         if(!leaveEventUseCase.leaveEvent(command)) return new ResponseEntity<>(HttpStatus.CONFLICT);

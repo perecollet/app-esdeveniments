@@ -27,11 +27,11 @@ public class LeaveEventService implements LeaveEventUseCase {
 
         if(event != null){
             event.setNumEnrolledParticipants(event.getNumEnrolledParticipants()-1);
+            uploadEventPort.updateEvent(event);
+            leaveEventPort.leaveEvent(command.getEventId(),command.getUserId());
             if (event.getNumEnrolledParticipants() == 0) {
                 deleteEventPort.deleteEvent(command.getEventId());
             }
-            uploadEventPort.updateEvent(event);
-            leaveEventPort.leaveEvent(command.getEventId(),command.getUserId());
             return true;
         }
         else{ return false;}

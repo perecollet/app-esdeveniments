@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { alertController } from '@ionic/core';
 import { EventService } from '../../services/EventService';
 import { Event } from '../../model/event';
+import { User } from '../../model/user';
 import { Router } from '@angular/router';
 import {MenuController, LoadingController, ModalController} from '@ionic/angular';
 
@@ -13,6 +15,8 @@ export class EventDetailPage implements OnInit {
 
   @Input() event: Event;
   @Input() joined: boolean;
+  show = false;
+  creator:boolean;
   errorMessage: string;
   loader: any;
   isDismiss = false;
@@ -21,8 +25,10 @@ export class EventDetailPage implements OnInit {
     private loadingCtrl: LoadingController, private modalCtrl: ModalController) { }
 
   ngOnInit(){
-    console.log(this.joined);
     this.menuController.enable(true);
+    console.log(this.event.creatorId["value"]);
+    console.log(localStorage.getItem("userId"));
+    if (this.event.creatorId["value"] == localStorage.getItem("userId") ) this.creator = true;
   }
   
   dismissModal() {
@@ -51,6 +57,20 @@ export class EventDetailPage implements OnInit {
     });
   }
 
+  showParticipants(){
+    this.show = !this.show;
+  }
+
+  async showUserDetails(user: User) {
+    const alert = await alertController.create({
+      header: user.name +' '+ user.surname,
+      message: user.description + '<br>Email: ' + user.email + '<br>Telèfon: ' + user.phone,
+      buttons: ['okei']
+    });
+
+    await alert.present();
+  }
+
   async presentLoading() {
     this.loader = await this.loadingCtrl.create({
       message: 'Please wait...'
@@ -67,7 +87,7 @@ export class EventDetailPage implements OnInit {
     if(!this.loader){
       return;
     }
-  return await this.loader.dismiss().then(() => console.log('dismissed'));
+    return await this.loader.dismiss().then(() => console.log('dismissed'));
   }
 
 }

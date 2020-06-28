@@ -1,0 +1,8 @@
+{
+  "appId": "cat.pcolletm.events",
+  "appName": "ionic-events",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

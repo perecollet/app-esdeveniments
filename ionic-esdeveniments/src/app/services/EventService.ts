@@ -6,6 +6,7 @@ import { Event } from '../model/event';
 //let API_URL = "http://192.168.0.75:8080/api/events/";
 let API_URL = "http://192.168.1.44:8080/api/events/";
 //let API_URL = "http://172.16.180.45:8080/api/events/";
+//let API_URL = "https://app-esdevenimients.herokuapp.com/api/events/"
 
 @Injectable({
     providedIn: 'root'
@@ -50,7 +51,7 @@ export class EventService{
 
     leaveEvent(eventId: number): Observable<any>{
         let userId = localStorage.getItem("userId");
-        return this.http.post(API_URL + "leave/" + eventId + "/" + userId,
+        return this.http.delete(API_URL + "leave/" + eventId + "/" + userId,
         {headers: this.getHeaders(),withCredentials:true});
     }
 }

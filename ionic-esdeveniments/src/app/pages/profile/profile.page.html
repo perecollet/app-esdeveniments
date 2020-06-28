@@ -24,23 +24,25 @@
           </ion-item>
           <ion-item>
             <ion-label position="stacked"></ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.address}}" readonly></ion-input>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.city}}" readonly></ion-input>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.zipcode}}" readonly></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.address"  value="{{user.address}}" ></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.city" value="{{user.city}}" ></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.zipcode" value="{{user.zipcode}}"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Correu: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.email}}" readonly></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.email"  value="{{user.email}}"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Telèfon: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.phone}}" readonly></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="location"  [(ngModel)]="user.phone" value="{{user.phone}}" ></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Descripció:<br> </ion-label>
-            <ion-textarea class="form-control input-text-custom"  id="description" value="{{user.description}}" readonly></ion-textarea>
+            <ion-textarea class="form-control input-text-custom"  id="description" [(ngModel)]="user.description" value="{{user.description}}"></ion-textarea>
           </ion-item>
-         </div>
+          <ion-button style="position: sticky;" id="saveChangesButton" color="primary" expand="block" size="large" (click)="updateUserInfo()">Desa</ion-button>
+          <ion-button style="position: sticky;" id="deleteAccountButton" color="danger" expand="block" size="large" (click)="deleteUserAlert()">Elimina el compte</ion-button>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

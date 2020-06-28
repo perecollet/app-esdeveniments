@@ -2,7 +2,7 @@ package cat.pcolletm.events.application.service;
 
 import cat.pcolletm.events.application.port.in.LoadUsersPort;
 import cat.pcolletm.events.application.port.in.CreateUserUseCase;
-import cat.pcolletm.events.application.port.out.CreateUserPort;
+import cat.pcolletm.events.application.port.out.UploadUserPort;
 import cat.pcolletm.events.common.UseCase;
 import cat.pcolletm.events.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +15,15 @@ import javax.transaction.Transactional;
 @Transactional
 public class CreateUserService implements CreateUserUseCase {
 
-    private final CreateUserPort createUserPort;
+    private final UploadUserPort uploadUserPort;
     private final LoadUsersPort loadUsersPort;
     private final PasswordEncoder passwordEncoder;
 
     @Override
     public boolean createUser(CreateUserCommand command) {
 
-        if (loadUsersPort.loadByEmail(command.getEmail()) != null){
+        if (loadUsersPort.loadByEmail(command.getEmail()) != null ||
+                loadUsersPort.loadByDni(command.getDni()) !=null){
             return false;
         }
 
@@ -39,7 +40,7 @@ public class CreateUserService implements CreateUserUseCase {
                 command.getDescription()
         );
 
-        createUserPort.createUser(user);
+        uploadUserPort.createUser(user);
 
         return true;
     }
