@@ -58,15 +58,6 @@ public class Event {
         return new Event(id,creatorId,activity,description,location,startTime,endTime,numParticipants,numEnrolledParticipants, participants);
     }
 
-
-    /*public void afegirParticipant (Usuari usuari){
-        participants.add(usuari);
-    }
-
-    public void eliminarParticipant (Usuari usuari){
-        participants.
-    }*/
-
     public void setCreatorId(Long creatorId){
         this.creatorId = new UserId(creatorId);
     }
