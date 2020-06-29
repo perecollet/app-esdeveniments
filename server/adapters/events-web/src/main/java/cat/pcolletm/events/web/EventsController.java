@@ -7,6 +7,7 @@ import cat.pcolletm.events.application.port.in.JoinEventUseCase.JoinEventCommand
 import cat.pcolletm.events.application.port.in.LeaveEventUseCase;
 import cat.pcolletm.events.application.port.in.LeaveEventUseCase.LeaveEventCommand;
 import cat.pcolletm.events.application.port.in.LoadEventsPort;
+import cat.pcolletm.events.application.port.out.DeleteEventPort;
 import cat.pcolletm.events.common.WebAdapter;
 import cat.pcolletm.events.domain.Event;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class EventsController {
     private final JoinEventUseCase joinEventUseCase;
     private final LeaveEventUseCase leaveEventUseCase;
     private final LoadEventsPort loadEventsPort;
+    private final DeleteEventPort deleteEventPort;
 
     @PostMapping("api/events/new")
     ResponseEntity<?> createEvent(@RequestBody Event event){
@@ -68,6 +70,12 @@ public class EventsController {
     ResponseEntity<?> leave(@PathVariable("eventId") Long eventId, @PathVariable("userId") Long userId){
         LeaveEventUseCase.LeaveEventCommand command = new LeaveEventCommand(eventId, userId);
         if(!leaveEventUseCase.leaveEvent(command)) return new ResponseEntity<>(HttpStatus.CONFLICT);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("api/events/delete/{eventId}")
+    ResponseEntity<?> delete(@PathVariable("eventId") Long eventId){
+        deleteEventPort.deleteEvent(eventId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

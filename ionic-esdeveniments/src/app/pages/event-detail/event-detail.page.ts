@@ -57,6 +57,17 @@ export class EventDetailPage implements OnInit {
     });
   }
 
+  deleteEvent(eventId){
+    this.presentLoading()
+    this.eventService.deleteEvent(eventId).subscribe(data => {
+      this.dismiss();
+      this.dismissModal();
+    },err => {
+      this.errorMessage = "No s'ha pogut eliminar l'esdeveniment";
+      this.dismiss();
+    });
+  }
+
   showParticipants(){
     this.show = !this.show;
   }

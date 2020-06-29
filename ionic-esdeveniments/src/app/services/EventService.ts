@@ -54,4 +54,9 @@ export class EventService{
         return this.http.delete(API_URL + "leave/" + eventId + "/" + userId,
         {headers: this.getHeaders(),withCredentials:true});
     }
+
+    deleteEvent(eventId: number): Observable<any>{
+        return this.http.delete(API_URL + "delete/" + eventId ,
+        {headers: this.getHeaders(),withCredentials:true});
+    }
 }

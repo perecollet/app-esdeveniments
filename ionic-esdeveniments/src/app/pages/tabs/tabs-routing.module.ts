@@ -9,15 +9,6 @@ const routes: Routes = [
     path: '',
     component: TabsPage,
     children: [
-      /*{
-        path: 'listJoinedEvents',
-        children: [
-          {
-            path: '',
-            loadChildren: '../list-events/list-events.module#ListEventsPageModule'
-          }
-        ]
-      },*/
       {
         path: '',
         children: [

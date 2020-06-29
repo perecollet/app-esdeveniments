@@ -3,5 +3,4 @@ include 'events-configuration'
 include 'adapters:events-web'
 include 'adapters:events-persistence'
 include 'events-application'
-include 'events-testdata'
 

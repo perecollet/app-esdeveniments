@@ -9,19 +9,4 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'joda-time:joda-time:2.10.6'
 
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'junit' // excluding junit 4
-    }
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0-M1'
-    testImplementation 'org.mockito:mockito-junit-jupiter:3.3.3'
-    testImplementation 'com.tngtech.archunit:archunit:0.13.1'
-    testImplementation 'de.adesso:junit-insights:1.1.0'
-    testImplementation 'org.junit.platform:junit-platform-launcher:1.7.0-M1'
-    testImplementation 'com.h2database:h2'
-    testImplementation project(':events-testdata')
-}
-
-test {
-    useJUnitPlatform()
-    systemProperty 'de.adesso.junitinsights.enabled', 'true'
 }

@@ -1,6 +1,7 @@
 package cat.pcolletm.events.application.service;
 
 import cat.pcolletm.events.application.port.in.CreateEventUseCase;
+import cat.pcolletm.events.application.port.in.FillPdfFormUseCase;
 import cat.pcolletm.events.application.port.in.JoinEventUseCase;
 import cat.pcolletm.events.application.port.in.LoadEventsPort;
 import cat.pcolletm.events.application.port.out.DeleteEventPort;
@@ -11,13 +12,13 @@ import lombok.RequiredArgsConstructor;
 
 import javax.transaction.Transactional;
 import java.util.Date;
-import java.util.List;
 
 @RequiredArgsConstructor
 @UseCase
 @Transactional
 public class CreateEventService implements CreateEventUseCase {
 
+    private final FillPdfFormUseCase fillPdfFormUseCase;
     private final UploadEventPort uploadEventPort;
     private final DeleteEventPort deleteEventPort;
     private final LoadEventsPort loadEventsPort;
@@ -53,6 +54,8 @@ public class CreateEventService implements CreateEventUseCase {
             deleteEventPort.deleteEvent(eventId);
             return false;
         }
+
+        fillPdfFormUseCase.fillPdf(eventId, command.getCreatorId().getValue());
 
         return true;
     }

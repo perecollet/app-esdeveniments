@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/events-application" />
             <option value="$PROJECT_DIR$/events-configuration" />
-            <option value="$PROJECT_DIR$/events-testdata" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
