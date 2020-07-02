@@ -73,7 +73,7 @@ export class EventDetailPage implements OnInit {
   async showUserDetails(user: User) {
     const alert = await alertController.create({
       header: user.name +' '+ user.surname,
-      message:'<br>Email: ' + user.email + '<br>Telèfon: ' + user.phone,
+      message: user.description + '<br><br>Email: ' + user.email + '<br>Telèfon: ' + user.phone,
       buttons: ['okei']
     });
 
