@@ -6,7 +6,7 @@ import { Event } from '../model/event';
 //let API_URL = "http://192.168.0.75:8080/api/events/";
 //let API_URL = "http://192.168.1.44:8080/api/events/";
 //let API_URL = "http://172.16.180.45:8080/api/events/";
-let API_URL = "https://app-esdevenimients.herokuapp.com/api/events/"
+let API_URL = "https://app-esdeveniments.herokuapp.com/api/events/";
 
 @Injectable({
     providedIn: 'root'
