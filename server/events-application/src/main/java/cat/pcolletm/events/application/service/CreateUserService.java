@@ -32,6 +32,7 @@ public class CreateUserService implements CreateUserUseCase {
                 passwordEncoder.encode(command.getPassword()),
                 command.getName(),
                 command.getSurname(),
+                command.getBirthday(),
                 command.getDni(),
                 command.getPhone(),
                 command.getAddress(),
@@ -39,6 +40,8 @@ public class CreateUserService implements CreateUserUseCase {
                 command.getZipcode(),
                 command.getDescription()
         );
+
+        if (!user.checkIsAdult()) return false;
 
         uploadUserPort.createUser(user);
 

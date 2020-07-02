@@ -2,9 +2,11 @@ package cat.pcolletm.events.application.port.in;
 
 import cat.pcolletm.events.common.SelfValidating;
 import lombok.*;
+import org.joda.time.DateTime;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 public interface CreateUserUseCase {
 
@@ -27,6 +29,9 @@ public interface CreateUserUseCase {
         private String surname;
 
         @NonNull
+        private Date birthday;
+
+        @NonNull
         private String dni;
 
         @NonNull @Pattern(regexp = "(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}")
@@ -44,11 +49,12 @@ public interface CreateUserUseCase {
 
         private String description;
 
-        public CreateUserCommand(String email, String password, String name, String surname,String dni, String phone, String address, String city, String zipcode, String description){
+        public CreateUserCommand(String email, String password, String name, String surname, Date birthday, String dni, String phone, String address, String city, String zipcode, String description){
             this.email = email;
             this.password = password;
             this.name = name;
             this.surname = surname;
+            this.birthday = birthday;
             this.dni = dni;
             this.phone = phone;
             this.address = address;

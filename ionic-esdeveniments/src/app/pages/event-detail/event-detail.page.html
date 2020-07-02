@@ -43,8 +43,8 @@
             </ion-list>
           </ion-item>
           <ion-button *ngIf="!joined"  id="submitButton" color="success" expand="block" size="large" (click) = "joinEvent(event.eventId['value'])">Unir-se</ion-button>
-          <ion-button *ngIf="joined && !creator"  id="submitButton" color="danger" expand="block" size="large" (click) = "leaveEvent(event.eventId['value'])">Abandona</ion-button>
-          <ion-button *ngIf="creator"  id="submitButton" color="danger" expand="block" size="large" (click) = "deleteEvent(event.eventId['value'])">Elimina</ion-button>
+          <ion-button *ngIf="joined && !creator"  id="submitButton" color="warning" expand="block" size="large" (click) = "leaveEvent(event.eventId['value'])">Abandonar</ion-button>
+          <ion-button *ngIf="creator"  id="submitButton" color="danger" expand="block" size="large" (click) = "deleteEvent(event.eventId['value'])">Eliminar</ion-button>
         </div>
       </ion-col>
     </ion-row>

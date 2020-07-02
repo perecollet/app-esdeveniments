@@ -4,6 +4,7 @@ export class User{
     password:string = "";
     name:string = "";
     surname:string = "";
+    birthday:string = "";
     dni:string = "";
     phone:string = "";
     address:string = "";

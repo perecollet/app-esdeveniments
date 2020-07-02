@@ -13,38 +13,41 @@
     </ion-item>
     <ion-row justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-        <div *ngIf="isDataAvailable"  padding>
+        <div *ngIf="isDataAvailable" padding>
           <ion-item>
             <ion-label>Nom: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.name}} {{user.surname}}" readonly></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="name"  value="{{user.name}} {{user.surname}}" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Data de naixement: </ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" id="birthdate"  value="{{user.birthday}}" readonly></ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label>D.N.I: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  value="{{user.dni}}" readonly></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="dni"  value="{{user.dni}}" readonly></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked"></ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.address"  value="{{user.address}}" ></ion-input>
-            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.city" value="{{user.city}}" ></ion-input>
-            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.zipcode" value="{{user.zipcode}}"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Correu: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location" [(ngModel)]="user.email"  value="{{user.email}}"></ion-input>
-          </ion-item>
-          <ion-item>
+            <ion-input type="text" class="form-control input-text-custom" id="address" [(ngModel)]="user.address"   ></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="city" [(ngModel)]="user.city" ></ion-input>
+            <ion-input type="text" class="form-control input-text-custom" id="zipcode" [(ngModel)]="user.zipcode"></ion-input>
+          </ion-item><ion-item>
             <ion-label>Telèfon: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="location"  [(ngModel)]="user.phone" value="{{user.phone}}" ></ion-input>
-          </ion-item>
+            <ion-input type="text" class="form-control input-text-custom" id="phone"  [(ngModel)]="user.phone"></ion-input>
+          </ion-item>          <ion-item>
+            <ion-label>Correu: </ion-label>
+            <ion-input type="text" class="form-control input-text-custom" id="email" [(ngModel)]="user.email"></ion-input>
+          </ion-item>    
           <ion-item>
             <ion-label>Descripció:<br> </ion-label>
-            <ion-textarea class="form-control input-text-custom"  id="description" [(ngModel)]="user.description" value="{{user.description}}"></ion-textarea>
+            <ion-textarea class="form-control input-text-custom"  id="description" [(ngModel)]="user.description"></ion-textarea>
           </ion-item>
-          <ion-button style="position: sticky;" id="saveChangesButton" color="primary" expand="block" size="large" (click)="updateUserInfo()">Desa</ion-button>
-          <ion-button style="position: sticky;" id="deleteAccountButton" color="danger" expand="block" size="large" (click)="deleteUserAlert()">Elimina el compte</ion-button>
+          <div style="position: sticky; margin-top: 0%;">
+            <ion-button  id="saveChangesButton" color="primary" expand="block" size="large" (click)="updateUserInfo()">Desa</ion-button>
+            <ion-button  id="deleteAccountButton" color="danger" expand="block" size="large" (click)="deleteUserAlert()">Elimina el compte</ion-button>
+          </div>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

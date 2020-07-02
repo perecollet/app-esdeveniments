@@ -1,7 +1,7 @@
 package cat.pcolletm.events.application.service;
 
 import cat.pcolletm.events.application.port.in.CreateEventUseCase;
-import cat.pcolletm.events.application.port.in.FillPdfFormUseCase;
+import cat.pcolletm.events.application.port.out.FillPdfFormUseCase;
 import cat.pcolletm.events.application.port.in.JoinEventUseCase;
 import cat.pcolletm.events.application.port.in.LoadEventsPort;
 import cat.pcolletm.events.application.port.out.DeleteEventPort;

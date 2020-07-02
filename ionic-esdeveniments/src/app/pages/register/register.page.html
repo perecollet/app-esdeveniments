@@ -11,25 +11,36 @@
         <form name="form-signup" (ngSubmit)="f.form.valid && register(f)" #f="ngForm" novalidate>
           <div padding style="overflow-y: scroll;">
             <ion-item>
-              <ion-input type="text" placeholder="Nom" class="form-control input-text-custom" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" required></ion-input>
+              <ion-label>Nom: </ion-label>
+              <ion-input type="text" class="form-control input-text-custom" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !name.valid" class="help-block" no-lines color="danger">
               <ion-label>El nom és obligatori.</ion-label>
             </ion-item>
             <ion-item>
-              <ion-input type="text" placeholder="Cognoms" class="form-control input-text-custom" id="name" name="name" [(ngModel)]="user.surname" #surname="ngModel" required></ion-input>
+              <ion-label>Cognoms: </ion-label>
+              <ion-input type="text" class="form-control input-text-custom" id="name" name="name" [(ngModel)]="user.surname" #surname="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !surname.valid" class="help-block" no-lines color="danger">
               <ion-label>El cognom és obligatori.</ion-label>
             </ion-item>
             <ion-item>
-              <ion-input type="text" placeholder="D.N.I" class="form-control input-text-custom" id="dni" name="dni" [(ngModel)]="user.dni" #dni="ngModel" required></ion-input>
+              <ion-label>Data de naixement:</ion-label>
+              <ion-datetime  displayFormat="DD/MM/YYYY" picker-format="DD/MM/YYYY" id="birthday" name="birthday" [(ngModel)]="user.birthday" #birthday="ngModel" required></ion-datetime>
+            </ion-item>
+            <ion-item *ngIf="f.submitted && !birthday.valid" class="help-block" no-lines color="danger">
+              <ion-label>La data de naixement és obligatòria i has de ser major de 18.</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>D.N.I: </ion-label>
+              <ion-input type="text" class="form-control input-text-custom" id="dni" name="dni" [(ngModel)]="user.dni" #dni="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !dni.valid" class="help-block" no-lines color="danger">
               <ion-label>El DNI és obligatori.</ion-label>
             </ion-item>
             <ion-item>
-              <ion-input type="tel" placeholder="Telèfon" id="phone" name="phone" [(ngModel)]="user.phone" #phone="ngModel" required></ion-input>
+              <ion-label>Telèfon: </ion-label>
+              <ion-input type="tel" id="phone" name="phone" [(ngModel)]="user.phone" #phone="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !phone.valid" class="help-block" no-lines color="danger">
               <ion-label>El telèfon és obligatori.</ion-label>
@@ -40,23 +51,19 @@
               <ion-input type="text" placeholder="Ciutat" class="form-control input-text-custom" id="city" name="city" [(ngModel)]="user.city" #city="ngModel" required></ion-input>
               <ion-input type="text" placeholder="Codi postal" class="form-control input-text-custom" id="zipcode" name="zipcode" [(ngModel)]="user.zipcode" #zipcode="ngModel" required></ion-input>
             </ion-item>
-            <ion-item *ngIf="f.submitted && !address.valid" class="help-block" no-lines color="danger">
-              <ion-label>La adreça és obligatòria</ion-label>
-            </ion-item>
-            <ion-item *ngIf="f.submitted && !city.valid" class="help-block" no-lines color="danger">
-              <ion-label>La ciutat és obligatòria</ion-label>
-            </ion-item>
-            <ion-item *ngIf="f.submitted && !zipcode.valid" class="help-block" no-lines color="danger">
-              <ion-label>El codi postal és obligatori</ion-label>
+            <ion-item *ngIf="f.submitted && !address.valid && !city.valid && !zipcode.valid" class="help-block" no-lines color="danger">
+              <ion-label>Alguna de les dades no és correcta.</ion-label>
             </ion-item>
             <ion-item>
-              <ion-input type="text" placeholder="Correu electrònic" class="form-control input-text-custom" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
+              <ion-label>Correu electrònic: </ion-label>
+              <ion-input type="text" class="form-control input-text-custom" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !email.valid" class="help-block" no-lines color="danger">
               <ion-label>Un correu electònic vàlid és obligatori.</ion-label>
             </ion-item>
             <ion-item>
-              <ion-input type="password" placeholder="Contrasenya" class="form-control input-text-custom" id="password" name="password" pattern=".{8,}"  [(ngModel)]="user.password" #password="ngModel" required></ion-input>
+              <ion-label>Contrasenya: </ion-label>
+              <ion-input type="password"  class="form-control input-text-custom" id="password" name="password" pattern=".{8,}"  [(ngModel)]="user.password" #password="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !password.valid" class="help-block" no-lines color="danger">
               <ion-label>Contrasenya obligatòria (mínim 8 caràcters)</ion-label>
@@ -68,7 +75,7 @@
           </div>
         </form>
         <div padding>
-          <ion-button fill="clear" expand="block" color="primary" [routerLink]="['/login']">Ja tinc un compte!</ion-button>
+          <ion-button fill="clear" expand="block" color="primary" (onclick)="f.resetForm()" [routerLink]="['/login']">Ja tinc un compte!</ion-button>
         </div>
       </ion-col>
     </ion-row>

@@ -5,9 +5,9 @@ import {map} from 'rxjs/operators';
 import {User} from '../model/user';
 
 
-//let API_URL = "http://192.168.0.75:8080/api/users/";
+let API_URL = "http://192.168.0.75:8080/api/users/";
 //let API_URL = "https://app-esdevenimients.herokuapp.com/api/users/"
-let API_URL = "http://192.168.1.44:8080/api/users/";
+//let API_URL = "http://192.168.1.44:8080/api/users/";
 //let API_URL = "http://172.16.180.45:8080/api/users/";
 
 @Injectable({

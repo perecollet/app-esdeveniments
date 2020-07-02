@@ -24,6 +24,7 @@ export class RegisterPage implements OnInit {
   }
 
   register(f: NgForm){
+    console.log(this.user.birthday)
     this.presentLoading();
     this.authService.register(this.user).subscribe(data=> {
       this.dismiss();

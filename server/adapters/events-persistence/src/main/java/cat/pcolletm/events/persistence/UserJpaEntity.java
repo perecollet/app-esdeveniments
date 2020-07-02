@@ -3,9 +3,9 @@ package cat.pcolletm.events.persistence;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "USERS")
@@ -29,6 +29,9 @@ public class UserJpaEntity {
 
     @Column
     private String surname;
+
+    @Column
+    private Date birthday;
 
     @Column
     private String dni;

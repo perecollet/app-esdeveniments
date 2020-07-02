@@ -7,6 +7,7 @@ import lombok.Value;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 public interface UpdateUserInfoUseCase {
 
@@ -33,6 +34,9 @@ public interface UpdateUserInfoUseCase {
         private String surname;
 
         @NonNull
+        private Date birthday;
+
+        @NonNull
         private String dni;
 
         @NonNull @Pattern(regexp = "(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}")
@@ -50,12 +54,13 @@ public interface UpdateUserInfoUseCase {
 
         private String description;
 
-        public UpdateUserInfoCommand(Long userId,String email, String password, String name, String surname,String dni, String phone, String address, String city, String zipcode, String description){
+        public UpdateUserInfoCommand(Long userId,String email, String password, String name, String surname,Date birthday, String dni, String phone, String address, String city, String zipcode, String description){
             this.userId = userId;
             this.email = email;
             this.password = password;
             this.name = name;
             this.surname = surname;
+            this.birthday = birthday;
             this.dni = dni;
             this.phone = phone;
             this.address = address;

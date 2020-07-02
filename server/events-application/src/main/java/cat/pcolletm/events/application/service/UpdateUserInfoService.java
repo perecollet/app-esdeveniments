@@ -31,6 +31,7 @@ public class UpdateUserInfoService implements UpdateUserInfoUseCase {
                 passwordEncoder.encode(command.getPassword()),
                 command.getName(),
                 command.getSurname(),
+                command.getBirthday(),
                 command.getDni(),
                 command.getPhone(),
                 command.getAddress(),
