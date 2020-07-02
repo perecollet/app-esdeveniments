@@ -26,8 +26,6 @@ export class EventDetailPage implements OnInit {
 
   ngOnInit(){
     this.menuController.enable(true);
-    console.log(this.event.creatorId["value"]);
-    console.log(localStorage.getItem("userId"));
     if (this.event.creatorId["value"] == localStorage.getItem("userId") ) this.creator = true;
   }
   
