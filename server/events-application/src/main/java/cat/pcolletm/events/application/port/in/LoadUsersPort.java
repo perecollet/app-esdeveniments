@@ -10,6 +10,8 @@ public interface LoadUsersPort {
 
     User loadByEmail(String email);
 
+    User loadByPhone(String phone);
+
     User loadByDni(String dni);
 
     List<User> loadAll();

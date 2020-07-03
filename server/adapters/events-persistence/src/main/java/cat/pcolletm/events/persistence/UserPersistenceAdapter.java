@@ -38,6 +38,14 @@ public class UserPersistenceAdapter implements UploadUserPort, LoadUsersPort, De
     }
 
     @Override
+    public User loadByPhone(String phone) {
+        UserJpaEntity user = userRepository.findByPhone(phone).orElse(null);
+
+        if (user != null) return userMapper.mapToDomainEntity(user);
+        else return null;
+    }
+
+    @Override
     public User loadByDni(String dni) {
         UserJpaEntity user = userRepository.findByDni(dni).orElse(null);
 

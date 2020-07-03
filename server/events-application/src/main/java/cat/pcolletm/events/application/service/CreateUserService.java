@@ -23,7 +23,8 @@ public class CreateUserService implements CreateUserUseCase {
     public boolean createUser(CreateUserCommand command) {
 
         if (loadUsersPort.loadByEmail(command.getEmail()) != null ||
-                loadUsersPort.loadByDni(command.getDni()) !=null){
+                loadUsersPort.loadByDni(command.getDni()) != null ||
+                loadUsersPort.loadByPhone(command.getPhone()) != null){
             return false;
         }
 

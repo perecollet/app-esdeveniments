@@ -11,6 +11,8 @@ interface UserRepository extends JpaRepository<UserJpaEntity,Long> {
 
     Optional<UserJpaEntity> findByEmail(String email);
 
+    Optional<UserJpaEntity> findByPhone(String phone);
+
     Optional<UserJpaEntity> findByDni(String email);
 
     @Query("select u from UserJpaEntity u " +

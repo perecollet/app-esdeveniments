@@ -90,7 +90,7 @@ public class UsersController {
     }
 
     @GetMapping("/api/users/{userId}")
-    public ResponseEntity<?> getAllUsers(@PathVariable("userId") Long userId){
+    public ResponseEntity<?> getUser(@PathVariable("userId") Long userId){
         return ResponseEntity.ok(loadUsersPort.loadUserById(userId));
     }
 

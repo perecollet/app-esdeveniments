@@ -25,6 +25,12 @@ public class UpdateUserInfoService implements UpdateUserInfoUseCase {
 
         if (loadUsersPort.loadUserById(command.getUserId()) == null) return false;
 
+       User userPhone = loadUsersPort.loadByPhone(command.getPhone());
+       User userEmail = loadUsersPort.loadByEmail(command.getEmail());
+
+       if (userPhone.getUserId().getValue() != command.getUserId() ||
+            userEmail.getUserId().getValue() != command.getUserId()) return false;
+
         User user = User.userWithId(
                 new UserId(command.getUserId()),
                 command.getEmail(),
