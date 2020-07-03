@@ -7,6 +7,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="loadUserInfo($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-item *ngIf="errorMessage" class="help-block" no-lines color="danger">
       <ion-label><strong>Error: </strong>{{errorMessage}}</ion-label>
@@ -14,36 +17,51 @@
     <ion-row justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <div *ngIf="isDataAvailable" padding>
-          <ion-item>
-            <ion-label>Nom: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="name"  value="{{user.name}} {{user.surname}}" readonly></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Data de naixement: </ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY" id="birthdate"  value="{{user.birthday}}" readonly></ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-label>D.N.I: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="dni"  value="{{user.dni}}" readonly></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked"></ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="address" [(ngModel)]="user.address"   ></ion-input>
-            <ion-input type="text" class="form-control input-text-custom" id="city" [(ngModel)]="user.city" ></ion-input>
-            <ion-input type="text" class="form-control input-text-custom" id="zipcode" [(ngModel)]="user.zipcode"></ion-input>
-          </ion-item><ion-item>
-            <ion-label>Telèfon: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="phone"  [(ngModel)]="user.phone"></ion-input>
-          </ion-item>          <ion-item>
-            <ion-label>Correu: </ion-label>
-            <ion-input type="text" class="form-control input-text-custom" id="email" [(ngModel)]="user.email"></ion-input>
-          </ion-item>    
-          <ion-item>
-            <ion-label>Descripció:<br> </ion-label>
-            <ion-textarea class="form-control input-text-custom"  id="description" [(ngModel)]="user.description"></ion-textarea>
-          </ion-item>
+          <form name="form-signup" (ngSubmit)="f.form.valid && updateUserInfo()" #f="ngForm" novalidate>
+              <ion-item>
+                <ion-label>Nom: </ion-label>
+                <ion-input type="text" class="form-control input-text-custom" id="name"  value="{{user.name}} {{user.surname}}" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Data de naixement: </ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" id="birthdate"  value="{{user.birthday}}" readonly></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label>D.N.I: </ion-label>
+                <ion-input type="text" class="form-control input-text-custom" id="dni"  value="{{user.dni}}" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked"></ion-label>
+                <ion-input type="text" class="form-control input-text-custom" id="address" name="address" [(ngModel)]="user.address" #address="ngModel" required></ion-input>
+                <ion-input type="text" class="form-control input-text-custom" id="city" name="city" [(ngModel)]="user.city" #city="ngModel" required></ion-input>
+                <ion-input type="text" class="form-control input-text-custom" id="zipcode" name="zipcode" [(ngModel)]="user.zipcode" #zipcode="ngModel" required></ion-input>
+              </ion-item>
+              <ion-item *ngIf="f.submitted && (!address.valid || !city.valid || !zipcode.valid)" class="help-block" no-lines color="danger">
+                  <ion-label>Alguna de les dades no és correcta.</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Telèfon: </ion-label>
+                <ion-input type="text" class="form-control input-text-custom" id="phone" name="phone" [(ngModel)]="user.phone" #phone="ngModel" required></ion-input>
+              </ion-item>
+              <ion-item *ngIf="f.submitted && !phone.valid" class="help-block" no-lines color="danger">
+                <ion-label>El telèfon és obligatori.</ion-label>
+              </ion-item>	  
+              <ion-item>
+                <ion-label>Correu: </ion-label>
+                <ion-input type="email" class="form-control input-text-custom" id="email"  name="email" [(ngModel)]="user.email"  #email="ngModel" required></ion-input>
+              </ion-item>
+              <ion-item *ngIf="f.submitted && !email.valid" class="help-block" no-lines color="danger">
+                <ion-label>El correu és obligatori.</ion-label>
+              </ion-item>	    
+              <ion-item>
+                <ion-label>Descripció:<br> </ion-label>
+                <ion-textarea class="form-control input-text-custom"  id="description" name="description" [(ngModel)]="user.description"></ion-textarea>
+              </ion-item>
+              <div padding>
+                  <ion-button size="large" type="submit" expand="block">Desa</ion-button>
+              </div>
+          </form>
           <div style="position: sticky; margin-top: 0%;">
-            <ion-button  id="saveChangesButton" color="primary" expand="block" size="large" (click)="updateUserInfo()">Desa</ion-button>
             <ion-button  id="deleteAccountButton" color="danger" expand="block" size="large" (click)="deleteUserAlert()">Elimina el compte</ion-button>
           </div>
         </div>

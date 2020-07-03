@@ -12,7 +12,7 @@
           <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
           <div padding>
             <ion-item>
-              <ion-input type="text" placeholder="Correu electrònic" class="form-control input-text-custom" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
+              <ion-input type="email" placeholder="Correu electrònic" class="form-control input-text-custom" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !email.valid" class="help-block" no-lines color="danger">
               <ion-label>Un email vàlid és obligatori.</ion-label>

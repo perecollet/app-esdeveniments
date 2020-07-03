@@ -3,7 +3,7 @@ import { CreateEventPage } from '../create-event/create-event.page';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../services/EventService';
 import { Event } from '../../model/event';
-import { ActivatedRoute,Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MenuController, LoadingController, ModalController, NavParams } from '@ionic/angular';
 
 @Component({

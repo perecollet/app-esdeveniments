@@ -23,19 +23,24 @@ export class ProfilePage implements OnInit{
 
   ngOnInit(){
     this.menuController.enable(true);
-    this.loadUserInfo();
+    this.loadUserInfo(null);
   }
 
-  loadUserInfo(){
+  loadUserInfo(event){
     this.presentLoading()
     this.authService.loadUserInfo().subscribe(data => {
       this.user = data;
       this.isDataAvailable = true;
+      this.router.navigate(['tabs/profile'])
       this.dismiss();
     },err => {
       this.errorMessage = "No s'han pogut carregar les dades";
       this.dismiss();
     });
+
+    if (event){
+      event.target.complete();
+    }
   }
 
   logout(){

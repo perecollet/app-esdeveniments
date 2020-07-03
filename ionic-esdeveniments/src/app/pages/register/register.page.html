@@ -51,12 +51,12 @@
               <ion-input type="text" placeholder="Ciutat" class="form-control input-text-custom" id="city" name="city" [(ngModel)]="user.city" #city="ngModel" required></ion-input>
               <ion-input type="text" placeholder="Codi postal" class="form-control input-text-custom" id="zipcode" name="zipcode" [(ngModel)]="user.zipcode" #zipcode="ngModel" required></ion-input>
             </ion-item>
-            <ion-item *ngIf="f.submitted && !address.valid && !city.valid && !zipcode.valid" class="help-block" no-lines color="danger">
+            <ion-item *ngIf="f.submitted && (!address.valid || !city.valid || !zipcode.valid)" class="help-block" no-lines color="danger">
               <ion-label>Alguna de les dades no és correcta.</ion-label>
             </ion-item>
             <ion-item>
               <ion-label>Correu electrònic: </ion-label>
-              <ion-input type="text" class="form-control input-text-custom" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
+              <ion-input type="email" class="form-control input-text-custom" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
             </ion-item>
             <ion-item *ngIf="f.submitted && !email.valid" class="help-block" no-lines color="danger">
               <ion-label>Un correu electònic vàlid és obligatori.</ion-label>
@@ -69,7 +69,6 @@
               <ion-label>Contrasenya obligatòria (mínim 8 caràcters)</ion-label>
             </ion-item>        
           </div>
-
           <div padding>
             <ion-button size="large" type="submit" expand="block">Crear compte</ion-button>
           </div>
