@@ -176,3 +176,8 @@ Base URL: `http://localhost:8080`
 | `POST` | `/events/{id}/join` | Join an event |
 | `POST` | `/events/{id}/leave` | Leave an event |
 | `GET` | `/events/{id}/pdf` | Download pre-filled PDF registration form |
+
+
+## License
+ 
+MIT — see [`LICENSE`](./LICENSE).
